@@ -3,8 +3,8 @@ For PHP Security
 
 ## .htaccess
 * [Custom Error Page](#Custom-Error)
-* [Disable Directory Listing](#Disable-Directory Listing)
-* [ADD Custom Headers](#Add Custom Headers)
+* [Disable Directory Listing](#Disable-Directory)
+* [ADD Custom Headers](#Custom-Headers)
 
 ## Custom-Error
 How to implement custom error page in PHP website?
@@ -14,13 +14,13 @@ How to implement custom error page in PHP website?
   
   ```
   
-## Disable-Directory Listing
+## #Disable-Directory
 
 ```
 Options -Indexes
   
   ```
-## Add Custom Headers
+## Custom-Headers
 
 ```
 Header set X-XSS-Protection "1; mode=block"
