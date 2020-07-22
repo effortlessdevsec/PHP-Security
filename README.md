@@ -6,6 +6,7 @@ For PHP Security
 * [Disable Directory Listing](#Disable-Directory)
 * [ADD Custom Headers](#Custom-Headers)
 * [Restrict File to Access](#forbidden)
+* [Remove the Page File Extension From the URL](#RewriteUrl)
 
 ## Custom-Error
 How to implement custom error page in PHP website?
@@ -42,6 +43,15 @@ Deny from all
   
   ```
   
+ ## RewriteUrl
+ ```
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+  
+  ```
+ 
   
 ## .htaccess
 
@@ -60,11 +70,20 @@ Header add Strict-Transport-Security "max-age=157680000"
 
 ErrorDocument 404 http://127.0.0.1/FIXING/404.html
 ErrorDocument 403 http://127.0.0.1/FIXING/404.html
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+RewriteRule ^([^\.]+)$ $1.php [NC,L]
+
+
 <Files .htaccess>
 Order allow,deny
 Deny from all
 </Files>
+
 Options -Indexes
+
 
 </IfModule>
   
