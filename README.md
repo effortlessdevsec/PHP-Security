@@ -192,8 +192,8 @@ Using mysql_real_escape_string()
          //echo $newfilename.".".$file_ext;
          $file_path = "images/". $newfilename.".".$file_ext;
          move_uploaded_file($file_tmp,$file_path);
-         echo "<img src=".$file_path." height=200 width=300 />";
-         #echo "Success";
+         //echo "<img src=".$file_path." height=200 width=300 />";
+         echo "Success";
       }else{
          print_r($errors);
 
