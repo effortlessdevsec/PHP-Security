@@ -11,6 +11,7 @@ For PHP Security
 
 ## 
 * [Broken Session Managment](#Session-fix)
+* [SQL Injection](#SQL Injection)
 
 
 ## Custom-Error
@@ -149,5 +150,13 @@ session_start();
 session_destroy();
 header("Location: login");
 echo 'You have been logged out. <a href="login">Go back</a>';
+  
+  ```
+
+## SQL Injection
+ ```
+    $username = mysqli_real_escape_string($con, $name);  
+    $password = mysqli_real_escape_string($con, $pass);
+    $sql = "select *from login where name = '$username' and pass = '$password'";
   
   ```
