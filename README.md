@@ -11,7 +11,7 @@ For PHP Security
 
 ## 
 * [Broken Session Managment](#Session-fix)
-* [SQL Injection](#SQL Injection)
+* [SQL Injection](#SQL-Injection)
 
 
 ## Custom-Error
@@ -153,7 +153,7 @@ echo 'You have been logged out. <a href="login">Go back</a>';
   
   ```
 
-## SQL Injection
+## SQL-Injection
  ```
     $username = mysqli_real_escape_string($con, $name);  
     $password = mysqli_real_escape_string($con, $pass);
