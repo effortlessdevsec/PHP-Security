@@ -12,7 +12,7 @@ For PHP Security
 ## 
 * [Broken Session Managment](#Session-fix)
 * [SQL Injection](#SQL-Injection)
-
+* [Unresticted File Upload](#File-Upload)
 
 ## Custom-Error
 How to implement custom error page in PHP website?
@@ -163,3 +163,44 @@ Using mysql_real_escape_string()
     $sql = "select *from login where name = '$username' and pass = '$password'";
   
   ```
+ ## File-Upload
+ 
+ 
+ ```
+<?php
+   if(isset($_FILES['image'])){
+      $errors= array();
+      $file_name = $_FILES['image']['name'];
+      $file_size =$_FILES['image']['size'];
+      $file_tmp =$_FILES['image']['tmp_name'];
+      $file_type=$_FILES['image']['type'];
+      $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);
+      
+      //echo $file_name;
+      //echo $file_type;
+      //echo $file_name;
+      
+      $extensions= array("jpeg","jpg","png");
+      if(in_array($file_ext,$extensions)=== false){
+         $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+        
+         
+      }
+
+      if(empty($errors)==true){
+         $newfilename = md5($file_name);
+         //echo $newfilename.".".$file_ext;
+         $file_path = "images/". $newfilename.".".$file_ext;
+         move_uploaded_file($file_tmp,$file_path);
+         echo "<img src=".$file_path." height=200 width=300 />";
+         #echo "Success";
+      }else{
+         print_r($errors);
+
+    }
+
+  }
+   ?>
+  
+  ```
+ 
