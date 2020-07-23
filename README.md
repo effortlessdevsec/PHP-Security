@@ -95,3 +95,11 @@ Options -Indexes
   ```
   
  ## Session-fix
+ ### login.php
+ ```
+            session_start();
+            session_regenerate_id();
+            $_SESSION['logged_in'] = true;
+            header("Location: welcome");
+  
+  ```
