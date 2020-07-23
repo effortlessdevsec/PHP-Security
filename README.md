@@ -154,6 +154,9 @@ echo 'You have been logged out. <a href="login">Go back</a>';
   ```
 
 ## SQL-Injection
+
+Using mysql_real_escape_string()
+
  ```
     $username = mysqli_real_escape_string($con, $name);  
     $password = mysqli_real_escape_string($con, $pass);
