@@ -8,6 +8,11 @@ For PHP Security
 * [Restrict File to Access](#forbidden)
 * [Remove the Page File Extension From the URL](#RewriteUrl)
 
+
+## 
+* [Broken Session Managment](#Session-fix)
+
+
 ## Custom-Error
 How to implement custom error page in PHP website?
 
@@ -89,4 +94,4 @@ Options -Indexes
   
   ```
   
-  
+ ## Session-fix
