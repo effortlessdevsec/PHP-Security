@@ -95,11 +95,59 @@ Options -Indexes
   ```
   
  ## Session-fix
+ I am taking an example:
  ### login.php
  ```
             session_start();
             session_regenerate_id();
             $_SESSION['logged_in'] = true;
             header("Location: welcome");
+  
+  ```
+  ### welcome.php
+  
+  ```
+            <?php
+session_start();
+if (! empty($_SESSION['logged_in']))
+{
+    ?>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    	<title></title>
+    	<script type="text/javascript" src="welcome.js"></script>
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    	<link rel="stylesheet" type="text/css" href="welcome.css">
+    </head>
+    <body>
+
+<html>
+<head>
+    <title>My Web Page</title>
+</head>
+<body>
+  <div class="tree"></div>
+</body>
+</html>
+
+    </body>
+    </html>
+    <a href='logout.php' style="margin-left: 200px">log out</a>
+    <?php
+}
+else
+{
+    header("Location: login");
+}
+   ```
+ ### logout.php
+ 
+ ```
+            <?php
+session_start();
+session_destroy();
+header("Location: login");
+echo 'You have been logged out. <a href="login">Go back</a>';
   
   ```
