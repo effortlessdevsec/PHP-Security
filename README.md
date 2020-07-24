@@ -13,6 +13,7 @@ For PHP Security
 * [Broken Session Managment](#Session-fix)
 * [SQL Injection](#SQL-Injection)
 * [Unresticted File Upload](#File-Upload)
+* [Implement Hidden Google reCAPTHA](#reCAPTHA)
 
 ## Custom-Error
 How to implement custom error page in PHP website?
@@ -203,4 +204,58 @@ Using mysql_real_escape_string()
    ?>
   
   ```
- 
+ ## reCAPTHA
+  ```
+  
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response']) && !empty($_POST["recaptcha_response"]) && isset($_POST['recaptcha_response']))
+{
+// Build POST request:
+  $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+  $recaptcha_secret = 'key';
+  $recaptcha_response = $_POST['recaptcha_response'];
+  echo $recaptcha_response ;
+
+// Make and decode POST request:
+  $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
+  $recaptcha = json_decode($recaptcha);
+
+// Take action based on the score returned:
+  if ($recaptcha->score >= 0.5) 
+  {
+    //insert code
+  }
+}
+
+?>
+
+//client side//
+
+<html>
+  <head>
+    <title>Google recapcha demo - Codeforgeek</title>
+<script src="https://www.google.com/recaptcha/api.js?render=site-key"></script>
+<script>
+  grecaptcha.ready(function () {
+    grecaptcha.execute('site-key', { action: 'contact' }).then(function (token) {
+      var recaptchaResponse = document.getElementById('recaptchaResponse');
+      recaptchaResponse.value = token;    
+    });
+  });
+</script>
+  </head>
+  <body>
+    <h1>Google reCAPTHA Demo</h1>
+    <form id="comment_form" action="" method="post">
+      <input type="email" placeholder="Type your email" size="40"><br><br>
+      <textarea name="comment" rows="8" cols="39"></textarea><br><br>
+      <input type="submit" name="submit" value="Post comment"><br><br>
+       <input type="reCAPTHA" name="recaptcha_response" id="recaptchaResponse">
+    </form>
+  </body>
+</html>
+
+
+
+  ```
