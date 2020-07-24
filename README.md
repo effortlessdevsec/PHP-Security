@@ -251,7 +251,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['recaptcha_response'])
       <input type="email" placeholder="Type your email" size="40"><br><br>
       <textarea name="comment" rows="8" cols="39"></textarea><br><br>
       <input type="submit" name="submit" value="Post comment"><br><br>
-       <input type="reCAPTHA" name="recaptcha_response" id="recaptchaResponse">
+       <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
     </form>
   </body>
 </html>
