@@ -164,6 +164,16 @@ Using mysql_real_escape_string()
     $sql = "select *from login where name = '$username' and pass = '$password'";
   
   ```
+  For Newer PHP VERSIONS Use Perpared statement for example!!
+  ```
+  $sql = $conn->prepare("SELECT * from exams  where id=?");
+                        $sql->bind_param("i", $nid);
+                        $sql->execute();
+                        $result = $sql->get_result();
+                        $count=$result->num_rows;
+  ```
+  
+  
  ## File-Upload
  
  
